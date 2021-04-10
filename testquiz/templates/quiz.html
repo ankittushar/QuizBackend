@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <title>Quiz</title>
+    <script>
+        function getanswer(){
+           var x= document.getElementsByClassName('answer');
+           var y= document.getElementsByTagName('input');
+           var i,j;
+           j=0;
+           for (i=0; i<x.length; i++){
+               x[i].style.display='block';
+           }
+           
+        }
+    </script>
+</head>
+<body>
+    {% if request.session.Email %}
+    {{request.session.Email}} &ensp;|    &nbsp; <a href="{% url 'logout' %}">Logout</a>
+    <hr/>
+        <div style="padding-left: 30px;">
+            {% for result in Exam %}
+            <table>
+                <tr>
+                    <td>{{result.id}}  {{result.Question}} ?</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="{{result.id}}" id="Option1" value="{{result.Option1}}">{{result.Option1}}</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="{{result.id}}" id="Option2" value="{{result.Option2}}">{{result.Option2}}</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="{{result.id}}"id="Option3" value="{{result.Option3}}">{{result.Option3}}</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="Option4" name="{{result.id}}" value="{{result.Option4}}">{{result.Option4}}</td>
+                </tr>
+                <tr>
+                    <td><b><label class="answer" value={{result.Answer}} style="display: none;">{{result.Answer}}</label></b></td>
+                </tr>
+            </table>
+            
+            
+            <hr/>
+            {% endfor %}
+        <input type="submit" value="Click for Results" id="sub_btn" onclick="getanswer();"/>
+        </div>
+    {% else %}
+        <h1>You have to login for starting the test</h1>
+        <a href="{% url 'login' %}">Login</a>
+    
+    {% endif %}
+
+   
+</body>
+</html>

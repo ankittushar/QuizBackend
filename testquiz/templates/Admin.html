@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<body>
+    {% if request.session.Email %}
+    {{request.session.Email}} &ensp;|    &nbsp; <a href="{% url 'logout' %}">Logout</a>
+
+            <h1>Welcome Admin</h1>
+            <h2>Add new Question</h2>
+            <form method="POST">
+                {% csrf_token %}
+            
+            <table>
+                <tr>
+                    <td>
+                    New Question
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Enter New Question" name="Question" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Option1
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Option1" name="Option1" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Option2
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Option2" name="Option2" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Option3
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Option3" name="Option3" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Option4
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Option4" name="Option4" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Answer
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Correct Answer" name="Answer" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit">ADD</button></td>
+                </tr>
+            </table>
+            {% if messages %}
+            {% for msg in messages %}
+            <b>{{msg}}</b>
+            {% endfor %}
+            {% endif %}
+            
+            </form>
+            
+    {% else %}
+    
+        <h1>You are not Logged in as Admin</h1>
+        <a href="{% url 'login' %}">Login</a>
+    
+    {% endif %}
+
+
+   
+</body>
+</html>

@@ -1,0 +1,34 @@
+<h1>Login</h1>
+<hr/>
+<form method="POST">
+    {% csrf_token %}
+
+<table>
+    <tr>
+        <td>
+            Email
+        </td>
+        <td>
+            <input type="text" placeholder="Enter your Email" name="Email" required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Password
+        </td>
+        <td>
+            <input type="password" placeholder="Enter your Password" name="Passwrd" required>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><button type="submit">Login</button></td>
+    </tr>
+</table>
+{% if messages %}
+{% for msg in messages %}
+<b>{{msg}}</b>
+{% endfor %}
+{% endif %}
+<a href="{% url 'reg' %}">Register</a>
+</form>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <title>Quiz-Project</title>
+    
+</head>
+<body>
+    {% if request.session.Email %}
+    {{request.session.Email}} &ensp;|    &nbsp; <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <div>
+            <a href="{% url 'reg' %}">Register</a> | 
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+        
+    
+    {% endif %}
+
+    
+    <center> 
+        <h1>Kaun banega Crore pati</h1>
+    </center>
+    
+    <hr/>
+    <center>
+        <button ><a href="{% url 'quiz' %}">Start Quiz</a> </button>
+        <button><a href="{% url 'admin' %}">Add Questions </a> </button>
+    </center>
+    <!-- <div style="padding-left: 30px;">
+        {% for result in Exam %}
+        <table>
+            <tr>
+                <td>{{result.id}}  {{result.Question}} ?</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="{{result.id}}" id="Option1" value="{{result.Option1}}">{{result.Option1}}</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="{{result.id}}" id="Option2" value="{{result.Option2}}">{{result.Option2}}</td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="{{result.id}}"id="Option3" value="{{result.Option3}}">{{result.Option3}}</td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="Option4" name="{{result.id}}" value="{{result.Option4}}">{{result.Option4}}</td>
+            </tr>
+            <tr>
+                <td><b><label class="answer" value={{result.Answer}} style="display: none;">{{result.Answer}}</label></b></td>
+            </tr>
+        </table>
+        
+        
+        <hr/>
+        {% endfor %}
+    <input type="submit" value="Click for Results" id="sub_btn" onclick="getanswer();"/>
+    </div> -->
+</body>
+</html>
