@@ -20,3 +20,13 @@ class Newuser(models.Model):
     class Meta:
         db_table='users'
     
+
+class QuizHistory(models.Model):
+    Email=models.CharField(max_length=20)
+    Question=models.CharField(max_length=100)
+    Answer=models.CharField(max_length=50)
+    YourAnswer=models.CharField(max_length=50)
+    Time=models.CharField(max_length=20)
+
+    class Meta:
+        db_table='quiz_history'

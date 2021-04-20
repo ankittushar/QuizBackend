@@ -1,34 +1,100 @@
-<h1>Login</h1>
-<hr/>
-<form method="POST">
-    {% csrf_token %}
+{% extends "Header.html" %}
 
-<table>
-    <tr>
-        <td>
-            Email
-        </td>
-        <td>
-            <input type="text" placeholder="Enter your Email" name="Email" required>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Password
-        </td>
-        <td>
-            <input type="password" placeholder="Enter your Password" name="Passwrd" required>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><button type="submit">Login</button></td>
-    </tr>
-</table>
-{% if messages %}
-{% for msg in messages %}
-<b>{{msg}}</b>
-{% endfor %}
-{% endif %}
-<a href="{% url 'reg' %}">Register</a>
-</form>
+{% block content %}
+
+
+   
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex">
+               <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-center">Sign In</h5>
+              <form class="form-signin" method="POST">
+                {% csrf_token %}
+                <!-- <div class="form-label-group">
+                  <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+                  <label for="inputUserame">Username</label>
+                </div> -->
+  
+                <div class="form-label-group">
+                  <input name="Email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                  <label for="inputEmail">Email address</label>
+                </div>
+                
+                <hr>
+  
+                <div class="form-label-group">
+                  <input name="Passwrd" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+                <div class="form-label-group">
+                {% if messages %}
+                {% for msg in messages %}
+                <b>{{msg}}</b>
+                {% endfor %}
+                {% endif %}
+                </div>
+                
+                
+                <!-- <div class="form-label-group">
+                  <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputConfirmPassword">Confirm password</label>
+                </div> -->
+  
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" >Sign In</button>
+                <a class="d-block text-center mt-2 small" href="{% url 'reg' %}">Register</a>
+                <hr class="my-4">
+                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
+                <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
+               
+                    
+              </form>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- <h1>Login</h1>
+    <hr/>
+    <form method="POST">
+        {% csrf_token %} -->
+
+    <!-- <table>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="text" placeholder="Enter your Email" name="Email" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password
+            </td>
+            <td>
+                <input type="password" placeholder="Enter your Password" name="Passwrd" required>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit">Login</button></td>
+        </tr>
+    </table> -->
+    <!-- {% if messages %}
+    {% for msg in messages %}
+    <b>{{msg}}</b>
+    {% endfor %}
+    {% endif %}
+    <a href="{% url 'reg' %}">Register</a> -->
+    <!-- </form> -->
+
+{% endblock %}

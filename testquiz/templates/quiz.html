@@ -2,11 +2,24 @@
 <head>
     <title>Quiz</title>
     <script>
+        window.onload=function(){
+            console.log(document.getElementsByClassName("Answer"));
+            var a =document.getElementsByClassName("Question");
+            var b =document.getElementsByClassName("Answer");
+            var i;
+            for (i=0; i<a.length; i++)
+            {
+                a[i].name=a[i].name+`${i}`;
+                b[i].name=b[i].name+`${i}`;
+            }
+
+        
+        }
+        
         function getanswer(){
-           var x= document.getElementsByClassName('answer');
-           var y= document.getElementsByTagName('input');
-           var i,j;
-           j=0;
+           var x= document.getElementsByClassName('Answer');
+           
+           var i;
            for (i=0; i<x.length; i++){
                x[i].style.display='block';
            }
@@ -18,11 +31,18 @@
     {% if request.session.Email %}
     {{request.session.Email}} &ensp;|    &nbsp; <a href="{% url 'logout' %}">Logout</a>
     <hr/>
+    <form method="POST" > 
+        {% csrf_token %}
+        
+        <input type="text" name="Email" value="{{request.session.Email}}" style="display: none;" >
+
         <div style="padding-left: 30px;">
+            
             {% for result in Exam %}
+           
             <table>
                 <tr>
-                    <td>{{result.id}}  {{result.Question}} ?</td>
+                    <td> {{forloop.counter}} <input type="text" class="Question" name="a" value="{{result.Question}}" > ?</td>
                 </tr>
                 <tr>
                     <td><input type="radio" name="{{result.id}}" id="Option1" value="{{result.Option1}}">{{result.Option1}}</td>
@@ -37,15 +57,19 @@
                     <td><input type="radio" id="Option4" name="{{result.id}}" value="{{result.Option4}}">{{result.Option4}}</td>
                 </tr>
                 <tr>
-                    <td><b><label class="answer" value={{result.Answer}} style="display: none;">{{result.Answer}}</label></b></td>
+                    <td><b><input type="text" class="Answer" name="Answer" value={{result.Answer}} style="display: none;"></b></td>
                 </tr>
             </table>
             
             
             <hr/>
+            
             {% endfor %}
-        <input type="submit" value="Click for Results" id="sub_btn" onclick="getanswer();"/>
+        
+        <!-- <input type="submit" value="Click for Results" id="sub_btn" onclick="getanswer();"/> -->
+        <button type="submit" >Submit </button>
         </div>
+    </form>
     {% else %}
         <h1>You have to login for starting the test</h1>
         <a href="{% url 'login' %}">Login</a>
